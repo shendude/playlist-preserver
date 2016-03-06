@@ -1,1 +1,27 @@
-hello world
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <title>I save your soundcloud playlists!</title>
+  </head>
+  <body>
+    <div id="inst">Enter Soundcloud username:</div>
+    <form id="fSearch" name="myForm">
+      <input type="text" value="shendude" name="user">
+    </form>
+    <button id="bSearch" onclick="findUser()">Search</button>
+    <ul id="list"></ul>
+    <div id="info"></div>
+    <button id="bNotMe" onclick="changeState(0)">This is not me!
+    </button>
+    <div id="inst2">Please select a playlist to preserve:</div>
+    <ul id="playlists"></ul>
+    <div id="inst2a">Or update an already preserved playlist:</div>
+    <button id="bUpdate" onclick="changeState(4)">Update</button>
+    <div id="inst2b">Paste saved playlist text below:</div>
+    <textarea cols='70' rows='25' id="input"></textarea>
+    <div id="inst3">Save text below to your own text doc:</div>
+    <button id="bSubUpdate" onclick="changeState(5)">Submit</button>
+    <textarea cols='70' rows='25' id="output"></textarea>
+  </body>
+</html>
