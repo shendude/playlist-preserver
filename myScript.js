@@ -81,7 +81,7 @@ function getUser(index, id) {
       var songList = [];
       var currTrack;
       for (var j = 0; j < playlists[i].tracks.length; j++) {
-      currTrack = playlists[i].tracks[j];
+        currTrack = playlists[i].tracks[j];
         songList[j] = [currTrack.id, currTrack.title, currTrack.user.username, currTrack.duration];
       };
       myPlists[title] = songList;
@@ -93,7 +93,7 @@ function getUser(index, id) {
     limit: 200
   }).then(function(favorites) {
     for (var i = 0; i < favorites.length; i++) {
-    	currTrack = favorites[i];
+      currTrack = favorites[i];
       myLikes[i] = [currTrack.id, currTrack.title, currTrack.user.username, currTrack.duration];
     };
   });
@@ -103,7 +103,7 @@ function getUser(index, id) {
 //should call getUser first before ever calling this function
 //TODO: incroporate get function into getUser function
 function getLikes() {
-	currPlaylistId = 0;
+  currPlaylistId = 0;
   currPlaylistName = 'likes';
   changeState(3);
   writeSongs(myLikes);
@@ -113,7 +113,7 @@ function getLikes() {
 //outputs the songlist of a given user's playlists
 //this songlist should be stored internally
 function getPlistSongs(title, id) {
-	currPlaylistId = id;
+  currPlaylistId = id;
   currPlaylistName = title;
   changeState(3);
   writeSongs(myPlists[title]);
@@ -124,13 +124,13 @@ function getPlistSongs(title, id) {
 //always writes a alphanumeric id string for lookup purposes
 //writes song title, artist, duration in minutes and seconds
 function writeSongs(arr) {
-	//id string always starts with user id, u, playlist id, p
-	var str = '[' + currUserId + 'u' + currPlaylistId + 'p';
+  //id string always starts with user id, u, playlist id, p
+  var str = '[' + currUserId + 'u' + currPlaylistId + 'p';
   //text output by line number 0 -> n
   var txt = '';
   var index = 1;
   for (var i = 0; i < arr.length; i++) {
-  	str += arr[i][0] + 'n'; 
+    str += arr[i][0] + 'n';
     txt += index + ') ' + arr[i][1] + '\n';
     txt += 'uploaded by: ' + arr[i][2] + '\n';
     txt += 'duration: ' + getTime(arr[i][3]) + '\n\n';
@@ -143,7 +143,7 @@ function writeSongs(arr) {
 //given a time in milliseconds, return a string
 //containing the time in minutes, seconds
 function getTime(ms) {
-	var sec = Math.floor(ms / 1000);
+  var sec = Math.floor(ms / 1000);
   return Math.floor(sec / 60) + 'm ' + (sec % 60) + 's';
 };
 
@@ -185,9 +185,9 @@ function changeState(state) {
     case 4:
       hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output']);
       hideMultElem(1, ['bNotMe', 'info']);
-    	break;
+      break;
     case 5:
-    	break;
+      break;
   };
 };
 

@@ -1,31 +1,25 @@
 * {
   text-align: center;
 }
-
 button {
   margin: 0 auto;
 }
-
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-
 div {
   margin: 10px auto;
 }
-
 #list {
   font-weight: bold;
   margin-top: 20px;
 }
-
 #playlists {
   font-weight: bold;
   margin: 10px auto;
 }
-
 #output {
   text-align: left;
   margin: 0 auto;
