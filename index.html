@@ -9,7 +9,7 @@
   <script src="myScript.js"></script>
 </head>
 
-<body>
+<body onload="changeState(0)">
   <div id="inst">Enter Soundcloud username:</div>
   <form id="fSearch" name="myForm">
     <input type="text" value="shendude" name="user">
@@ -24,10 +24,11 @@
   <div id="inst2a">Or update an already preserved playlist:</div>
   <button id="bUpdate" onclick="changeState(4)">Update</button>
   <div id="inst2b">Paste saved playlist text below:</div>
-  <textarea cols='70' rows='25' id="input"></textarea>
+  <textarea cols='100' rows='35' id="input"></textarea>
   <div id="inst3">Save text below to your own text doc:</div>
-  <button id="bSubUpdate" onclick="changeState(5)">Submit</button>
-  <textarea cols='70' rows='25' id="output"></textarea>
+  <textarea cols='100' rows='35' id="output"></textarea>
+  <button id="bSubUpdate" onclick="changeState(5)">Submit Playlist</button>
+  <button id="bCancel" onclick="changeState(1)">Cancel</button>
 </body>
 
 </html>

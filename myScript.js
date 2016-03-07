@@ -22,6 +22,8 @@ var names = [];
 var myLikes = [];
 //keeps track of the target user's playlist songs
 var myPlists = {};
+//keeps track of the target user's submitted playlist
+var myUsrPlist = {};
 
 
 //gets a list of users from search query
@@ -168,27 +170,33 @@ function changeState(state) {
   switch (state) {
     //initial state
     case 0:
-      hideMultElem(0, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output']);
+      hideMultElem(0, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'bCancel']);
       hideMultElem(1, ['inst', 'fSearch', 'bSearch', 'list']);
       break;
       //post user selection
     case 1:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst3', 'output']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2b', 'input', 'bSubUpdate', 'bCancel', 'inst3', 'output']);
       hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate']);
       break;
       //post playlist selection
     case 3:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2a', 'bUpdate']);
-      hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst3', 'output']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2a', 'bUpdate', 'inst2b', 'input', 'bSubUpdate']);
+      hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst3', 'output', 'bCancel']);
       break;
       //post update selection
     case 4:
       hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output']);
-      hideMultElem(1, ['bNotMe', 'info']);
+      hideMultElem(1, ['bNotMe', 'info', 'inst2b', 'input', 'bSubUpdate', 'bCancel']);
       break;
+      //post playlist user submission
     case 5:
       break;
   };
+};
+
+//given a playlist, reads playlist into playlist object
+function playlistReader(txt) {
+  //FIXME
 };
 
 //given a username, resolves a user json object
