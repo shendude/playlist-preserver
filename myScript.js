@@ -84,7 +84,7 @@ function getUser(index, id) {
       var currTrack;
       for (var j = 0; j < playlists[i].tracks.length; j++) {
         currTrack = playlists[i].tracks[j];
-        songList[j] = [currTrack.id, currTrack.title, currTrack.user.username, currTrack.duration];
+        songList[j] = [currTrack.id, currTrack.title, currTrack.user.username, getTime(currTrack.duration)];
       };
       myPlists[title] = songList;
       pElem.setAttribute('onclick', "getPlistSongs('" + title + "', " + playlists[i].id + ")");
@@ -96,7 +96,7 @@ function getUser(index, id) {
   }).then(function(favorites) {
     for (var i = 0; i < favorites.length; i++) {
       currTrack = favorites[i];
-      myLikes[i] = [currTrack.id, currTrack.title, currTrack.user.username, currTrack.duration];
+      myLikes[i] = [currTrack.id, currTrack.title, currTrack.user.username, getTime(currTrack.duration)];
     };
   });
 };
@@ -135,7 +135,7 @@ function writeSongs(arr) {
     str += arr[i][0] + 'n';
     txt += index + ') ' + arr[i][1] + '\n';
     txt += 'uploaded by: ' + arr[i][2] + '\n';
-    txt += 'duration: ' + getTime(arr[i][3]) + '\n\n';
+    txt += 'duration: ' + arr[i][3] + '\n\n';
     index += 1;
   };
   str += ']';
@@ -190,13 +190,63 @@ function changeState(state) {
       break;
       //post playlist user submission
     case 5:
+      playlistReader(document.getElementById('input').value);
       break;
   };
 };
 
-//given a playlist, reads playlist into playlist object
+//given a playlist, reads playlist into myUsrPlaylist obj
+//uses regex to parse raw text data
 function playlistReader(txt) {
-  //FIXME
+  var arr = txt.split(/\n/g);
+  var lastEntry = 0;
+  var tempPlist = [];
+  var tempSong = [];
+  for (var i = 0; i < arr.length; i++) {
+    if ((/^[0-9]+\)/).test(arr[i])) {
+      //designates a number, aka, title of song
+      tempSong[1] = arr[i].split(' ').slice(1).join(' ');
+      lastEntry = 1;
+    } else if (arr[i].slice(0, 13) === 'uploaded by: ') {
+      //designates the uploaded by info line
+      tempSong[2] = arr[i].slice(13);
+      lastEntry = 2;
+    } else if (arr[i].slice(0, 10) === 'duration: ') {
+      //designates the duration info line
+      //also completes the song array, pushes to playlist
+      tempSong[3] = arr[i].slice(10);
+      tempPlist.push(tempSong.slice(0));
+      tempSong = [];
+      lastEntry = 3;
+    } else if ((/^\[[0-9]+/).test(arr[i])) {
+      //designates reading the id code into the code var
+      //writes to the myUserPlaylist obj
+      //ends the loop
+      var code = arr.slice(i).join('').match(/[0-9]+[a-z]/g);
+      for (var j = 2; j < code.length; j++) {
+        tempPlist[j - 2][0] = code[j].slice(0, -1);
+        tempPlist[j - 2][4] = code[j].slice(-1);
+      }
+      myUsrPlist.userId = code[0].slice(0, -1);
+      myUsrPlist.playlistId = code[1].slice(0, -1);
+      myUsrPlist.list = tempPlist;
+      i = arr.length;
+    } else if (arr[i].length > 0) {
+      //if there's an additional unexpected newline
+      //for title author or duration data
+      //FIXME add to last entry
+      switch(lastEntry) {
+        case 1:
+          break;
+        case 2:
+          break;
+        case 3:
+          //todo: add duration info to last tempPlist entry
+          break;
+      };
+    };
+  };
+  console.log(myUsrPlist.list);
 };
 
 //given a username, resolves a user json object
