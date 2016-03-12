@@ -199,19 +199,19 @@ function changeState(state) {
 //uses regex to parse raw text data
 function playlistReader(txt) {
   var arr = txt.split(/\n/g);
-  var lastEntry = 0;
+  var lastEntry = 3;
   var tempPlist = [];
   var tempSong = [];
   for (var i = 0; i < arr.length; i++) {
-    if ((/^[0-9]+\)/).test(arr[i])) {
+    if ((/^[0-9]+\)/).test(arr[i]) && (lastEntry === 3)) {
       //designates a number, aka, title of song
       tempSong[1] = arr[i].split(' ').slice(1).join(' ');
       lastEntry = 1;
-    } else if (arr[i].slice(0, 13) === 'uploaded by: ') {
+    } else if ((arr[i].slice(0, 13) === 'uploaded by: ') && (lastEntry === 1)) {
       //designates the uploaded by info line
       tempSong[2] = arr[i].slice(13);
       lastEntry = 2;
-    } else if (arr[i].slice(0, 10) === 'duration: ') {
+    } else if ((arr[i].slice(0, 10) === 'duration: ') && (lastEntry === 2)) {
       //designates the duration info line
       //also completes the song array, pushes to playlist
       tempSong[3] = arr[i].slice(10);
@@ -234,19 +234,19 @@ function playlistReader(txt) {
     } else if (arr[i].length > 0) {
       //if there's an additional unexpected newline
       //for title author or duration data
-      //FIXME add to last entry
       switch(lastEntry) {
         case 1:
+          tempSong[1] += arr[i];
           break;
         case 2:
+          tempSong[2] += arr[i];
           break;
         case 3:
-          //todo: add duration info to last tempPlist entry
+          tempPlist[tempPlist.length - 1][3] += arr[i];
           break;
       };
     };
   };
-  console.log(myUsrPlist.list);
 };
 
 //given a username, resolves a user json object
