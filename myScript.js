@@ -84,7 +84,7 @@ function getUser(index, id) {
       var currTrack;
       for (var j = 0; j < playlists[i].tracks.length; j++) {
         currTrack = playlists[i].tracks[j];
-        songList[j] = [currTrack.id, currTrack.title, currTrack.user.username, getTime(currTrack.duration)];
+        songList[j] = [currTrack.id, currTrack.title, currTrack.user.username, getTime(currTrack.duration), 'o'];
       };
       myPlists[title] = songList;
       pElem.setAttribute('onclick', "getPlistSongs('" + title + "', " + playlists[i].id + ")");
@@ -96,7 +96,7 @@ function getUser(index, id) {
   }).then(function(favorites) {
     for (var i = 0; i < favorites.length; i++) {
       currTrack = favorites[i];
-      myLikes[i] = [currTrack.id, currTrack.title, currTrack.user.username, getTime(currTrack.duration)];
+      myLikes[i] = [currTrack.id, currTrack.title, currTrack.user.username, getTime(currTrack.duration), 'o'];
     };
   });
 };
@@ -109,7 +109,6 @@ function getLikes() {
   currPlaylistName = 'likes';
   changeState(3);
   writeSongs(myLikes);
-  //FIXME
 };
 
 //outputs the songlist of a given user's playlists
@@ -119,7 +118,6 @@ function getPlistSongs(title, id) {
   currPlaylistName = title;
   changeState(3);
   writeSongs(myPlists[title]);
-  //FIXME
 };
 
 //given an array of songs, writes the songs to a textarea box
@@ -132,7 +130,7 @@ function writeSongs(arr) {
   var txt = '';
   var index = 1;
   for (var i = 0; i < arr.length; i++) {
-    str += arr[i][0] + 'n';
+    str += arr[i][0] + arr[i][4];
     txt += index + ') ' + arr[i][1] + '\n';
     txt += 'uploaded by: ' + arr[i][2] + '\n';
     txt += 'duration: ' + arr[i][3] + '\n\n';
@@ -170,27 +168,30 @@ function changeState(state) {
   switch (state) {
     //initial state
     case 0:
-      hideMultElem(0, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'bCancel']);
+      hideMultElem(0, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bCancel']);
       hideMultElem(1, ['inst', 'fSearch', 'bSearch', 'list']);
       break;
       //post user selection
     case 1:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2b', 'input', 'bSubUpdate', 'bCancel', 'inst3', 'output']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bCancel']);
       hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate']);
       break;
       //post playlist selection
     case 3:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2a', 'bUpdate', 'inst2b', 'input', 'bSubUpdate']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2a', 'bUpdate', 'inst2b', 'input', 'bSubUpdate', 'lUpdate']);
       hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst3', 'output', 'bCancel']);
       break;
       //post update selection
     case 4:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output', 'lUpdate']);
       hideMultElem(1, ['bNotMe', 'info', 'inst2b', 'input', 'bSubUpdate', 'bCancel']);
       break;
       //post playlist user submission
     case 5:
       playlistReader(document.getElementById('input').value);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'inst2b', 'input', 'inst3', 'bUpdate', 'bSubUpdate']);
+      hideMultElem(1, ['bNotMe', 'info', 'lUpdate', 'bCancel']);
+      displayUpdates();
       break;
   };
 };
@@ -245,6 +246,37 @@ function playlistReader(txt) {
           tempPlist[tempPlist.length - 1][3] += arr[i];
           break;
       };
+    };
+  };
+};
+
+//displays the updates to the input playlist
+//in a user friendly way
+//dark blue text designates user added songs
+//dard red text designates soundcloud removed songs
+//light blue text designates past user added songs
+//light red text designates past sc removed songs
+function displayUpdates() {
+  var tar = document.getElementById('lUpdate');
+  var songId = 0;
+  var songList = myUsrPlist.list
+  for (var i = 0; i < songList.length; i++) {
+    var song = document.createElement('li');
+    song.id = 'song' + i;
+    song.innerHTML = songList[i][1] + '</br>' + 'uploaded by: ' + songList[i][2] + '</br>' + songList[i][3];
+    switch(songList[i][4]) {
+        //code o = original playlist song
+      case 'o':
+        break;
+        //code sc removed song, old
+      case 's':
+        break;
+        //code user added song, old
+      case 'a':
+        break;
+        //code user removed song, old
+      case 'r':
+        break;
     };
   };
 };
