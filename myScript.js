@@ -267,17 +267,25 @@ function displayUpdates() {
     switch(songList[i][4]) {
         //code o = original playlist song
       case 'o':
+        //FIXME CHECK FOR SC REMOVAL
+        //FIXME CHECK FOR NEW ADDITIONAL SONGS
         break;
-        //code sc removed song, old
+        //code s = sc removed song, old
       case 's':
+        song.style.color = "#f80";
+        song.style.text-decoration = "line-through";
         break;
-        //code user added song, old
+        //code a = user added song, old
       case 'a':
+        song.style.color = "#39f";
         break;
-        //code user removed song, old
+        //code r = user removed song, old
       case 'r':
+        song.style.color = "#39f";
+        song.style.text-decoration = "line-through";
         break;
     };
+    tar.appendChild(song);
   };
 };
 
