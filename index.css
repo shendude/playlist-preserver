@@ -16,6 +16,9 @@ textarea {
   text-align: left;
   margin: 0 auto;
 }
+li {
+  margin: 10px;
+}
 #info {
   margin: 0;
 }

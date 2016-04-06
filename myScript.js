@@ -5,7 +5,7 @@
 //TODO: youtube playlist support?
 
 SC.initialize({
-  client_id: 'b5bb126d5842703cc49f079bdba92d29'
+  client_id: 'YOURIDHERE'
 });
 
 //GLOBAL VARIABLES
@@ -14,7 +14,6 @@ SC.initialize({
 var currUserName = '';
 var currUserId = 0;
 //keeps track of what playlist we're talking about
-var currPlaylistName = '';
 var currPlaylistId = 0;
 //keeps track of searched users' names
 var names = [];
@@ -62,9 +61,12 @@ function displayUsers(users) {
 //displays welcome message, this is not me button
 function getUser(index, id) {
   currUserId = id;
-  currUserName = names[index];
-  document.getElementById('info').innerHTML = 'Welcome, ' + names[index];
-  changeState(1);
+  //allows getUser to be called with a negative index, ignores welcome message, changestate
+  if (index >= 0) {
+    currUserName = names[index];
+    document.getElementById('info').innerHTML = 'Welcome, ' + currUserName;
+    changeState(1);
+  };
   //clears the plists list and starts by adding the liked songs list
   var pLists = document.getElementById('playlists');
   pLists.innerHTML = '';
@@ -78,16 +80,15 @@ function getUser(index, id) {
   }).then(function(playlists) {
     for (var i = 0; i < playlists.length; i++) {
       var pElem = document.createElement('li');
-      var title = playlists[i].title;
-      pElem.appendChild(document.createTextNode(title));
+      pElem.appendChild(document.createTextNode(playlists[i].title));
       var songList = [];
       var currTrack;
       for (var j = 0; j < playlists[i].tracks.length; j++) {
         currTrack = playlists[i].tracks[j];
         songList[j] = [currTrack.id, currTrack.title, currTrack.user.username, getTime(currTrack.duration), 'o'];
       };
-      myPlists[title] = songList;
-      pElem.setAttribute('onclick', "getPlistSongs('" + title + "', " + playlists[i].id + ")");
+      myPlists[playlists[i].id] = songList;
+      pElem.setAttribute('onclick', "getPlistSongs(" + playlists[i].id + ")");
       pLists.appendChild(pElem);
     };
   });
@@ -106,18 +107,16 @@ function getUser(index, id) {
 //TODO: incroporate get function into getUser function
 function getLikes() {
   currPlaylistId = 0;
-  currPlaylistName = 'likes';
   changeState(3);
   writeSongs(myLikes);
 };
 
 //outputs the songlist of a given user's playlists
 //this songlist should be stored internally
-function getPlistSongs(title, id) {
+function getPlistSongs(id) {
   currPlaylistId = id;
-  currPlaylistName = title;
   changeState(3);
-  writeSongs(myPlists[title]);
+  writeSongs(myPlists[id]);
 };
 
 //given an array of songs, writes the songs to a textarea box
@@ -221,15 +220,17 @@ function playlistReader(txt) {
       lastEntry = 3;
     } else if ((/^\[[0-9]+/).test(arr[i])) {
       //designates reading the id code into the code var
-      //writes to the myUserPlaylist obj
+      //writes to the myUserPlaylist obj, fills in id data
       //ends the loop
       var code = arr.slice(i).join('').match(/[0-9]+[a-z]/g);
+      currUserId = parseInt(code[0].slice(0, -1));
+      currPlaylistId = parseInt(code[1].slice(0, -1));
       for (var j = 2; j < code.length; j++) {
-        tempPlist[j - 2][0] = code[j].slice(0, -1);
+        tempPlist[j - 2][0] = parseInt(code[j].slice(0, -1));
         tempPlist[j - 2][4] = code[j].slice(-1);
       }
-      myUsrPlist.userId = code[0].slice(0, -1);
-      myUsrPlist.playlistId = code[1].slice(0, -1);
+      myUsrPlist.userId = parseInt(code[0].slice(0, -1));
+      myUsrPlist.playlistId = parseInt(code[1].slice(0, -1));
       myUsrPlist.list = tempPlist;
       i = arr.length;
     } else if (arr[i].length > 0) {
@@ -250,52 +251,81 @@ function playlistReader(txt) {
   };
 };
 
-//displays the updates to the input playlist
-//in a user friendly way
-//dark blue text designates user added songs
-//dard red text designates soundcloud removed songs
-//light blue text designates past user added songs
-//light red text designates past sc removed songs
+//displays the updates to the input playlist in a user friendly way
+//given id data, looks up sc playlist, compares to provided playlist
+//in a stepwise fashion.
+//TODO: does not accomidate song rearrangements
+//does not consider song duration updates
+//does not consider missing user/playlist id's
+//FIXME: ADD CODES AUTOMATICALLY
 function displayUpdates() {
-  var tar = document.getElementById('lUpdate');
-  var songId = 0;
-  var songList = myUsrPlist.list
-  for (var i = 0; i < songList.length; i++) {
-    var song = document.createElement('li');
-    song.id = 'song' + i;
-    song.innerHTML = songList[i][1] + '</br>' + 'uploaded by: ' + songList[i][2] + '</br>' + songList[i][3];
-    switch(songList[i][4]) {
-        //code o = original playlist song
-      case 'o':
-        //FIXME CHECK FOR SC REMOVAL
-        //FIXME CHECK FOR NEW ADDITIONAL SONGS
-        break;
-        //code s = sc removed song, old
-      case 's':
-        song.style.color = "#f80";
-        song.style.text-decoration = "line-through";
-        break;
-        //code a = user added song, old
-      case 'a':
-        song.style.color = "#39f";
-        break;
-        //code r = user removed song, old
-      case 'r':
-        song.style.color = "#39f";
-        song.style.text-decoration = "line-through";
-        break;
-    };
-    tar.appendChild(song);
+  var target = document.getElementById('lUpdate');
+  //initializes the user songlists, sc songlists
+  getUser(-1, currUserId);
+  var uList = myUsrPlist.list;
+  var sList = [];
+  if (currPlaylistId === 0) {
+    sList = myLikes;
+  } else {
+    sList = myPlists[currPlaylistId];
   };
-};
+  //loops over both songlists independently, diff var keeps track of list matching
+  //uIdList keeps track of provided song id's for easy refrencing
+  var i = 0;
+  var j = 0;
+  var uIdList = uList.map(function(arr) {return arr[0]});
+  console.log(sList);
+  console.log(uList);
+  console.log(uIdList);
+  while ((i < uList.length) || (j < sList.length)) {
+    var song = document.createElement('li');
+    //checks if the songs match, process these songs
+    //if not, check uIdList for past presence, looks at missing song id's to see if sc removed or user removed -> bold
+    //if not, assumes sc song is user added -> bold
+    if (uList[i][0] === sList[j][0]) {
+      song.innerHTML = uList[i][1] + '</br>' + 'uploaded by: ' + uList[i][2] + '</br>' + uList[i][3];
+      switch(uList[i][4]) {
+          //code o = original playlist song, black
+        case 'o':
+          break;
+          //code a = user added song, blue
+        case 'a':
+          song.style.color = "#39f";
+          break;
+      };
+      i++;
+      j++;
+    } else if (uIdList.indexOf(sList[j][0]) >= 0){
+      //check if missing uIdList entry is code s, orange lt
+      //otherwise assume sList is missing a song
+      //check if id still exhists within sc system -> bold blue lt OR bold orange lt
+      song.innerHTML = uList[i][1] + '</br>' + 'uploaded by: ' + uList[i][2] + '</br>' + uList[i][3];
+      if (uList[i][4] === 's') {
+        song.style.color = "#f50";
+        song.style.textDecoration = "line-through";
+      } else {
+        SC.get('/tracks/' + id).then(function(result) {
+          song.style.color = "#39f";
+          song.style.textDecoration = "line-through";
+          song.style.fontWeight = "bold";
+        }).catch(function(error) {
+          console.log('Error: ' + error.message);
+          song.style.color = "#f50";
+          song.style.textDecoration = "line-through";
+          song.style.fontWeight = "bold";
+        });
+      };
+      i++;
+    } else {
+      //assume newly added sc song -> bold orange
+      //increment
+      song.innerHTML = sList[j][1] + '</br>' + 'uploaded by: ' + sList[j][2] + '</br>' + sList[j][3];
+      song.style.color = "#f50";
+      song.style.fontWeight = "bold";
+      j++;
+    };
 
-//given a username, resolves a user json object
-//currently no use for this function
-var resolveUser = function(user) {
-  var myUrl = 'https://soundcloud.com/' + user;
-  SC.get('/resolve/?url=' + myUrl, {
-    limit: 1
-  }).then(function(result) {
-    console.log(result);
-  });
+    //display
+    target.appendChild(song);
+  };
 };
