@@ -56,3 +56,14 @@ Orange color = changes (removals expecially) made by soundcloud
 
 
 6)To save this update, press the Click Here to Save button. The updated playlist will be shown in text form. Save this file to your computer.
+
+#closing notes
+to see an example of this app in action, feel free to look at my own playlist:
+
+1)enter shendude for the username
+
+2)update playlist using the included playlist in the 'test.txt' file from the project folder
+
+3) observe how Song1 (which was uploaded by yours truely and unceremonously takendown a mere 10min later) is shown in orange: signifying a takedown event. It is highlited in orange and bolded, showing its been takendown by soundcloud (acting on my behalf) and a recent event (test.txt was not updated to include this event)
+
+4)if you save the updated playlist and resubmit it, no songs will be in bold, signifying that there were no changes made to the playlist since the last save.
