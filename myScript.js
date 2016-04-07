@@ -1,9 +1,3 @@
-//TODO: maybe make a preservatives themed app? 
-// eg: net wt: 34 songs, family owned since 2016 badge
-// have a orange plaid background, times new roman text
-// have a faq page?
-//TODO: youtube playlist support?
-
 SC.initialize({
   client_id: 'YOURIDHERE'
 });
