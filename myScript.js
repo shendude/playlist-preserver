@@ -23,6 +23,8 @@ var myLikes = [];
 var myPlists = {};
 //keeps track of the target user's submitted playlist
 var myUsrPlist = {};
+//keeps track of target user's updated playlist
+var myUpPlist = [];
 
 
 //gets a list of users from search query
@@ -165,31 +167,33 @@ function hideMultElem(hide, elemArr) {
 //given a state, hides and unhides elements
 function changeState(state) {
   switch (state) {
-    //initial state
     case 0:
-      hideMultElem(0, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bCancel']);
+      //initial state, show username query bar
+      hideMultElem(0, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bSave', 'bCancel']);
       hideMultElem(1, ['inst', 'fSearch', 'bSearch', 'list']);
       break;
-      //post user selection
     case 1:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bCancel']);
+      //post user selection -> propts playlist selection or update playlist
+      myUsrPlist = {};
+      document.getElementById('lUpdate').innerHTML = "";
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bSave', 'bCancel']);
       hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate']);
       break;
-      //post playlist selection
     case 3:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2a', 'bUpdate', 'inst2b', 'input', 'bSubUpdate', 'lUpdate']);
+      //post playlist selection -> shows playlist raw text file, prompts user to save this file
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2a', 'bUpdate', 'inst2b', 'input', 'bSubUpdate', 'lUpdate', 'bSave']);
       hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst3', 'output', 'bCancel']);
       break;
-      //post update selection
     case 4:
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output', 'lUpdate']);
+      //post update choice -> prompts user for playlist text input
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output', 'lUpdate', 'bSave']);
       hideMultElem(1, ['bNotMe', 'info', 'inst2b', 'input', 'bSubUpdate', 'bCancel']);
       break;
-      //post playlist user submission
     case 5:
+      //post update playlist text entry -> outputs user-friendly playlist view, prompts user to update text file
       playlistReader(document.getElementById('input').value);
       hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'inst2b', 'input', 'inst3', 'bUpdate', 'bSubUpdate']);
-      hideMultElem(1, ['bNotMe', 'info', 'lUpdate', 'bCancel']);
+      hideMultElem(1, ['bNotMe', 'info', 'lUpdate', 'bSave', 'bCancel']);
       displayUpdates();
       break;
   };
@@ -260,7 +264,7 @@ function playlistReader(txt) {
 //FIXME: ADD CODES AUTOMATICALLY
 function displayUpdates() {
   var target = document.getElementById('lUpdate');
-  //initializes the user songlists, sc songlists
+  //initializes the user songlists, sc songlists, updated songlists
   getUser(-1, currUserId);
   var uList = myUsrPlist.list;
   var sList = [];
@@ -269,63 +273,101 @@ function displayUpdates() {
   } else {
     sList = myPlists[currPlaylistId];
   };
-  //loops over both songlists independently, diff var keeps track of list matching
-  //uIdList keeps track of provided song id's for easy refrencing
+  myUpPlist = [];
+  //uIdList, sIdList keeps track of provided song id's for easy refrencing
+  //i, j index variables for user list, sc list
   var i = 0;
   var j = 0;
   var uIdList = uList.map(function(arr) {return arr[0]});
-  console.log(sList);
-  console.log(uList);
-  console.log(uIdList);
+  var sIdList = sList.map(function(arr) {return arr[0]});
+  var scCheckList = [];
+
+  //loops over both songlists independently with index vars i, j for uList and sList respectively
   while ((i < uList.length) || (j < sList.length)) {
     var song = document.createElement('li');
-    //checks if the songs match, process these songs
-    //if not, check uIdList for past presence, looks at missing song id's to see if sc removed or user removed -> bold
-    //if not, assumes sc song is user added -> bold
-    if (uList[i][0] === sList[j][0]) {
+    //checks if the songs match, if so increments both lists
+    if ((i < uList.length)&&(j < sList.length)&&(uList[i][0] === sList[j][0])) {
       song.innerHTML = uList[i][1] + '</br>' + 'uploaded by: ' + uList[i][2] + '</br>' + uList[i][3];
+      song.id = uList[i][0];
+      myUpPlist.push(uList[i]);
       switch(uList[i][4]) {
-          //code o = original playlist song, black
         case 'o':
+          //code o = original playlist song
           break;
-          //code a = user added song, blue
         case 'a':
+          //code a = user added song
           song.style.color = "#39f";
           break;
       };
       i++;
       j++;
-    } else if (uIdList.indexOf(sList[j][0]) >= 0){
-      //check if missing uIdList entry is code s, orange lt
-      //otherwise assume sList is missing a song
-      //check if id still exhists within sc system -> bold blue lt OR bold orange lt
+    } else if ((j === sList.length)||(uIdList.indexOf(sList[j][0]) >= 0)){
+      //check if missing sIdList entry is code s or u
+      //otherwise assume song is recently either sc removed or user removed. adds song's id to check list
       song.innerHTML = uList[i][1] + '</br>' + 'uploaded by: ' + uList[i][2] + '</br>' + uList[i][3];
+      song.id = uList[i][0];
+      myUpPlist.push(uList[i]);
       if (uList[i][4] === 's') {
+        //code s = previously soundcloud removed song
         song.style.color = "#f50";
         song.style.textDecoration = "line-through";
+      } else if (uList[i][4] === 'u') {
+        //code u = previousl user removed song
+        song.style.color = "#39f";
+        song.style.textDecoration = "line-through";
       } else {
-        SC.get('/tracks/' + id).then(function(result) {
-          song.style.color = "#39f";
-          song.style.textDecoration = "line-through";
-          song.style.fontWeight = "bold";
-        }).catch(function(error) {
-          console.log('Error: ' + error.message);
-          song.style.color = "#f50";
-          song.style.textDecoration = "line-through";
-          song.style.fontWeight = "bold";
-        });
+        //add id to check list for later processing
+        scCheckList.push(uList[i][0]);
       };
       i++;
     } else {
-      //assume newly added sc song -> bold orange
-      //increment
+      //assume user newly added song
       song.innerHTML = sList[j][1] + '</br>' + 'uploaded by: ' + sList[j][2] + '</br>' + sList[j][3];
-      song.style.color = "#f50";
+      song.id = sList[j][0];
+      myUpPlist.push(sList[j]);
+      myUpPlist[myUpPlist.length - 1][4] = 'a';
+      song.style.color = "#39f";
       song.style.fontWeight = "bold";
       j++;
     };
 
-    //display
+    //display song list element
     target.appendChild(song);
   };
+  //processes check list with helper function scCheck
+  for (var elem in scCheckList) {
+    scCheck(scCheckList[elem], sIdList);
+  };
+};
+
+//helper function for displayUpdates, checks if song is
+//misordered: in which case it is ignored
+//extant in sc filesys but not sIdList which means recently user removed
+//nonexhistant anywhere in sc, which means sc removed
+function scCheck(id, sIdList) {
+  var IdList = myUpPlist.map(function(arr) {return arr[0]});
+  var index = IdList.indexOf(id);
+  var song = document.getElementById(id.toString());
+    SC.get('/tracks/' + id).then(function(result) {
+      if (sIdList.indexOf(id) < 0) {
+        myUpPlist[index][4] = 'u';
+        song.style.color = "#39f";
+        song.style.textDecoration = "line-through";
+        song.style.fontWeight = "bold";
+      };
+  }).catch(function(error) {
+    console.log('Error: ' + error.message);
+    myUpPlist[index][4] = 's';
+    song.style.color = "#f50";
+    song.style.textDecoration = "line-through";
+    song.style.fontWeight = "bold";
+  });
+};
+
+//called when 'click here to save' button is pressed
+//wrapper function for writeSongs, displays playlist text to output field
+//changes state to 3
+function writeUpdate() {
+  writeSongs(myUpPlist);
+  changeState(3);
 };
