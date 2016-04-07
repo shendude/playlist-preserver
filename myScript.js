@@ -30,7 +30,7 @@ var myUpPlist = [];
 //gets a list of users from search query
 function findUser() {
   var input = document.myForm.user.value;
-  var list = document.getElementById('list');
+  var list = document.getElementById('lUsers');
   while (list.firstChild) {
     list.removeChild(list.firstChild);
   };
@@ -45,7 +45,7 @@ function findUser() {
 //puts list of users into clickable list, onclick event
 //calls getUser with index number, user id number
 function displayUsers(users) {
-  var list = document.getElementById('list');
+  var list = document.getElementById('lUsers');
   for (var i = 0; i < users.length; i++) {
     var user = document.createElement('li');
     if (users[i].full_name.length > 1) {
@@ -150,6 +150,7 @@ function getTime(ms) {
 
 //given a hide val of 0 or 1, hides or unhides elements of id's contained
 //in elemArr via the style property display: none
+//helper function for changeState
 function hideMultElem(hide, elemArr) {
   //0 = hide 1 = unhide
   if (hide) {
@@ -170,29 +171,29 @@ function changeState(state) {
     case 0:
       //initial state, show username query bar
       hideMultElem(0, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bSave', 'bCancel']);
-      hideMultElem(1, ['inst', 'fSearch', 'bSearch', 'list']);
+      hideMultElem(1, ['inst', 'fSearch', 'bSearch', 'lUsers']);
       break;
     case 1:
       //post user selection -> propts playlist selection or update playlist
       myUsrPlist = {};
       document.getElementById('lUpdate').innerHTML = "";
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bSave', 'bCancel']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'lUsers', 'inst2b', 'input', 'inst3', 'output', 'bSubUpdate', 'lUpdate', 'bSave', 'bCancel']);
       hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst2a', 'bUpdate']);
       break;
     case 3:
       //post playlist selection -> shows playlist raw text file, prompts user to save this file
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2a', 'bUpdate', 'inst2b', 'input', 'bSubUpdate', 'lUpdate', 'bSave']);
-      hideMultElem(1, ['info', 'bNotMe', 'inst2', 'playlists', 'inst3', 'output', 'bCancel']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'inst2', 'lUsers', 'playlists', 'inst2a', 'bUpdate', 'inst2b', 'input', 'bSubUpdate', 'lUpdate', 'bSave']);
+      hideMultElem(1, ['info', 'bNotMe', 'inst3', 'output', 'bCancel']);
       break;
     case 4:
       //post update choice -> prompts user for playlist text input
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output', 'lUpdate', 'bSave']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'lUsers', 'inst2', 'playlists', 'inst2a', 'bUpdate', 'inst3', 'output', 'lUpdate', 'bSave']);
       hideMultElem(1, ['bNotMe', 'info', 'inst2b', 'input', 'bSubUpdate', 'bCancel']);
       break;
     case 5:
       //post update playlist text entry -> outputs user-friendly playlist view, prompts user to update text file
       playlistReader(document.getElementById('input').value);
-      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'list', 'inst2', 'playlists', 'inst2a', 'inst2b', 'input', 'inst3', 'bUpdate', 'bSubUpdate']);
+      hideMultElem(0, ['inst', 'fSearch', 'bSearch', 'lUsers', 'inst2', 'playlists', 'inst2a', 'inst2b', 'input', 'inst3', 'bUpdate', 'bSubUpdate']);
       hideMultElem(1, ['bNotMe', 'info', 'lUpdate', 'bSave', 'bCancel']);
       displayUpdates();
       break;
