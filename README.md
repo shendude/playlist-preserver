@@ -68,6 +68,6 @@ link: https://soundcloud.com/shendude/sets/test
 
 3) observe how Song1 (which was uploaded by yours truely and unceremonously takendown a mere 10min later) is shown in orange: signifying a takedown event. It is highlited in orange and bolded, showing its been takendown by soundcloud (acting on my behalf) and a recent event (test.txt was not updated to include this event)
 
-3.5) note how song 5 - sheppard- Geronimo (Matoma Remix) is crossed out, bold, and blue. This signifies that it was removed, done recently, and done by the user, respectively. If you try to find the song on soundcloud.com, it is still there! Unlike my Song1, which is nowhere to be seen. 
+4) note how song 5 - sheppard- Geronimo (Matoma Remix) is crossed out, bold, and blue. This signifies that it was removed, done recently, and done by the user, respectively. If you try to find the song on soundcloud.com, it is still there! Unlike my Song1, which is nowhere to be seen. 
 
-4)if you save the updated playlist and resubmit it, no songs will be in bold, signifying that there were no changes made to the playlist since the last save.
+5)if you save the updated playlist and resubmit it, no songs will be in bold, signifying that there were no changes made to the playlist since the last save.
