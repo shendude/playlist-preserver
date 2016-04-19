@@ -10,38 +10,38 @@ Now no longer will you have to accept 47 track long 50-track playlists! With pla
 This simple app allows you to save a playlist on your computer as raw text. Resubmitting your playlist (from text form) to this app highlights recent changes to your playlist, in addition to designating which songs were removed. It is recommended to update your playlist text file with this app as changes are made to your soundcloud playlist. 
 
 
-note: This app does not require any login's and does not save your data. It will never change anything on soundcloud.
+note: *This app does not require any login's and does not save your data. It will never change anything on soundcloud.*
 
 #getting started
 
 
-1)Enter your soundcloud username into the textbox and click SEARCH. Click yourself!
+1)Enter your soundcloud username into the textbox and click **SEARCH**. Click yourself!
 
-2)Click on a playlist to bring up the playlist in text form. SAVE this text to your computer!
+2)Click on a playlist to bring up the playlist in text form. *Save this text to your computer!*
 
-3)As your playlist changes over time, UPDATE and SUBMIT PLAYLIST via the update option from step 2.
+3)As your playlist changes over time, **UPDATE** and **SUBMIT PLAYLIST** via the update option from step 2.
 
-4)VIEW your playlist,  color coded for your convenience.
-
-
-
-BOLD = recent changes
-
-CROSSED = removed from playlist
-
-BLUE = changes made by user
-
-ORANGE = changes (removals expecially) made by soundcloud
+4)View your playlist,  color coded for your convenience.
 
 
 
+..* BOLD = recent changes
 
-5)Finally, SAVE your playlist again. Click the 'click here to save' button. Dont forget to save this to your computer!
+..* CROSSED = removed from playlist
+
+..* BLUE = changes made by user
+
+..* ORANGE = changes (removals expecially) made by soundcloud
+
+
+
+
+5)Finally, save your playlist again. Click the **Click Here to Save** button. *Save this text to your computer!*
 
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
 
-link: https://soundcloud.com/shendude/sets/test
+... link: https://soundcloud.com/shendude/sets/test
 
 1)enter shendude for the username
 
