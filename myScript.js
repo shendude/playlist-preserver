@@ -1,5 +1,5 @@
 SC.initialize({
-  client_id: 'YOURIDHERE'
+  client_id: 'b5bb126d5842703cc49f079bdba92d29'
 });
 
 //GLOBAL VARIABLES
