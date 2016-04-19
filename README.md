@@ -60,6 +60,8 @@ Orange color = changes (removals expecially) made by soundcloud
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
 
+link: https://soundcloud.com/shendude/sets/test
+
 1)enter shendude for the username
 
 2)update playlist using the included playlist in the 'test.txt' file from the project folder
