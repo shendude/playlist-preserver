@@ -24,6 +24,7 @@ note: This app does not require any login's and does not save your data. It will
 4)VIEW your playlist,  color coded for your convenience.
 
 
+
 BOLD = recent changes
 
 CROSSED = removed from playlist
@@ -31,6 +32,8 @@ CROSSED = removed from playlist
 BLUE = changes made by user
 
 ORANGE = changes (removals expecially) made by soundcloud
+
+
 
 
 5)Finally, SAVE your playlist again. Click the 'click here to save' button. Dont forget to save this to your computer!
