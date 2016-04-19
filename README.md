@@ -15,11 +15,11 @@ note: This app does not require any login's and does not save your data. It will
 #getting started
 
 
-1)Enter your soundcloud username into the textbox and click SEARCH.   FIND yourself!
+1)Enter your soundcloud username into the textbox and click SEARCH. Find yourself!
 
-2)Click on a playlist to bring up the playlist in text form.   SAVE this text to your computer!
+2)Click on a playlist to bring up the playlist in text form. SAVE this text to your computer!
 
-3)As your playlist changes over time,   UPDATE and SUBMIT PLAYLIST via the update option from step 2.
+3)As your playlist changes over time, UPDATE and SUBMIT PLAYLIST via the update option from step 2.
 
 4)VIEW your playlist,  color coded for your convenience.
 
