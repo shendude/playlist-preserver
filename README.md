@@ -17,7 +17,7 @@ note: *This app does not require any login's and does not save your data. It wil
 
 1)Enter your soundcloud username into the textbox and click **SEARCH**. Click yourself!
 
-2)Click on a playlist to bring up the playlist in text form. *Save this text to your computer!*
+2)Click on a playlist to bring up the playlist in text form. *Copy and save this text to your computer!*
 
 3)As your playlist changes over time, **UPDATE** and **SUBMIT PLAYLIST** via the update option from step 2.
 
@@ -36,7 +36,7 @@ note: *This app does not require any login's and does not save your data. It wil
 
 
 
-5)Finally, save your playlist again. Click the **Click Here to Save** button. *Save this text to your computer!*
+5)Finally, save your playlist again. Click the **Click Here to Save** button. *Copy and save this text to your computer!*
 
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
