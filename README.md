@@ -14,48 +14,26 @@ note: This app does not require any login's and does not save your data. It will
 
 #getting started
 
-required:
 
--a soundcloud api client ID
+1)Enter your soundcloud username into the textbox and click SEARCH.   FIND yourself!
 
--a text editor
+2)Click on a playlist to bring up the playlist in text form.   SAVE this text to your computer!
 
+3)As your playlist changes over time,   UPDATE and SUBMIT PLAYLIST via the update option from step 2.
 
-highly recommended:
-
--a soundcloud account
+4)VIEW your playlist,  color coded for your convenience.
 
 
+BOLD = recent changes
+
+CROSSED = removed from playlist
+
+BLUE = changes made by user
+
+ORANGE = changes (removals expecially) made by soundcloud
 
 
-
-IMPORTANT: replace the 'YOURIDHERE' in line 2 of myScript.js with your soundcloud api clientID
-
-
-1)Enter your soundcloud username into the textbox and click SEARCH.
-
-2)Click on the desired username from the search results, this will bring up their playlists and an option for previous users to
-
-update their playlist text file.
-
-3)Click on a playlist to bring up the playlist in text form. Save this file to your computer.
-
-4)As songs are added to your playlist or removed, resubmit your text file via the update option from step 2.
-
-5)This will bring up a updated of your playlist, color coded according to changes made.
-
-KEY:
-
-Bold = recent changes
-
-Crossed out = removed from playlist
-
-Blue color = changes made by user
-
-Orange color = changes (removals expecially) made by soundcloud
-
-
-6)To save this update, press the Click Here to Save button. The updated playlist will be shown in text form. Save this file to your computer.
+5)Finally, SAVE your playlist again. Click the 'click here to save' button. Dont forget to save this to your computer!
 
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
