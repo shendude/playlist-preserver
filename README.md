@@ -25,13 +25,13 @@ note: *This app does not require any login's and does not save your data. It wil
 
 
 
-..* BOLD = recent changes
+⋅⋅* BOLD = recent changes
 
-..* CROSSED = removed from playlist
+⋅⋅* CROSSED = removed from playlist
 
-..* BLUE = changes made by user
+⋅⋅* BLUE = changes made by user
 
-..* ORANGE = changes (removals expecially) made by soundcloud
+⋅⋅* ORANGE = changes (removals expecially) made by soundcloud
 
 
 
@@ -41,7 +41,7 @@ note: *This app does not require any login's and does not save your data. It wil
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
 
-... link: https://soundcloud.com/shendude/sets/test
+⋅⋅ link: https://soundcloud.com/shendude/sets/test
 
 1)enter shendude for the username
 
