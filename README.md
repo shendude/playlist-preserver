@@ -1,5 +1,5 @@
 # playlist-preserver
-tracks your soundcloud playlists
+tracks changes made to your soundcloud playlists
 
 # Intro Spiel
 Have you ever been annoyed at soundcloud copyright takedowns? Ever create that perfect 50-track driving playlist only to find out weeks later that it had become 47 tracks long? Ever stared at your playlist trying to remenber what songs were removed, only to give up in frustration?
