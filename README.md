@@ -60,9 +60,14 @@ This app tracks changes made to your playlist only after the initial playlist te
 
 Regular text highlighting denotes older changes made to the base playlist file before the latest file submission/update. Bold text denotes recent changes made since the last update. Crossed-out-text denotes songs that have been removed from the playlist. Black text denotes songs that made up the base playlist file (eg. the playlist you had when you first started tracking it). Blue highlighting indicates changes made by the user (the soundcloud account holder who originally created the playlist). Orange highlighting are songs removed by soundcloud (due to either copyright takedowns or the artist taking down the song themselves).
 
--**How do I edit a soundcloud playlist?**
+-**How do I make a new playlist?**
 
-Only the soundcloud user who has made the playlist can change it. Visit the soundcloud how-to guide (http://uploadandmanage.help.soundcloud.com/customer/en/portal/topics/832450-your-playlists/articles?b_id=9645) for more info.
+You need to have registered a soundcloud accout. Visit the soundcloud how-to guide 
+(http://uploadandmanage.help.soundcloud.com/customer/portal/articles/2166978-creating-and-adding-tracks-to-a-playlist) for more info.
+
+-**How do I edit a playlist?**
+
+Only the soundcloud user who has made the playlist can change it. Visit the soundcloud how-to guides (http://uploadandmanage.help.soundcloud.com/customer/portal/articles/2122125-managing-and-customizing-your-playlist) for more info.
 
 -**How come the changes I've made aren't showing up?**
 
