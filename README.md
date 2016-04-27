@@ -1,5 +1,5 @@
 # playlist-preserver
-tracks changes made to your soundcloud playlists
+tracks changes made to your soundcloud playlists, allowing playlist backups in event of account termination (or worse: copyright strikes)
 
 # Intro Spiel
 Have you ever been annoyed at soundcloud copyright takedowns? Ever create that perfect 50-track driving playlist only to find out weeks later that it had become 47 tracks long? Ever stared at your playlist trying to remenber what songs were removed, only to give up in frustration?
@@ -7,7 +7,7 @@ Have you ever been annoyed at soundcloud copyright takedowns? Ever create that p
 Now no longer will you have to accept 47 track long 50-track playlists! With playlist-preserver you will be able to clearly see what songs were added or removed, in addition to keeping track of copyright takedowns!  Give the middle finger to the man!
 
 # What it Does
-This app allows you to save a playlist on your computer as raw text. This becomes the file from which all changes are tracked. Resubmitting this file highlights all changes made to the playlist since the file was created. 
+This app allows you to save a playlist on your computer as raw text. This text doc. becomes the file from which all changes are tracked. Resubmitting this file highlights all changes made to the playlist since the file was created. 
 
 -When the user adds or removes songs via his soundcloud account, changes are shown in the app highlighted blue.
 
@@ -64,6 +64,9 @@ This app tracks changes made to your playlist only after the initial playlist te
 
 Regular text highlighting denotes older changes made to the base playlist file before the latest file submission/update. Bold text denotes recent changes made since the last update. Crossed-out-text denotes songs that have been removed from the playlist. Black text denotes songs that made up the base playlist file (eg. the playlist you had when you first started tracking it). Blue highlighting indicates changes made by the user (the soundcloud account holder who originally made the playlist). Orange highlighting are songs removed by soundcloud (due to copyright takedowns, possibly due to the artist taking down the song).
 
+-**How do I make changes to my soundcloud playlist?**
+
+Only the soundcloud user who has made the playlist can change it. Visit the soundcloud how-to guide (link:http://uploadandmanage.help.soundcloud.com/customer/en/portal/topics/832450-your-playlists/articles?b_id=9645) for more info.
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
 
