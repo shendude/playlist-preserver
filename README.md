@@ -1,5 +1,5 @@
 #playlist-preserver
-tracks changes made to your soundcloud playlists, allowing playlist backups in event of account termination (or worse: copyright strikes)
+tracks changes made to your soundcloud playlists, in addition to creating a backup in event of account termination (or worse: copyright strikes)
 
 #Intro Spiel
 Have you ever been annoyed at soundcloud copyright takedowns? Ever create that perfect 50-track driving playlist only to find out weeks later that it had become 47 tracks long? Ever stared at your playlist trying to remenber what songs were removed, only to give up in frustration?
@@ -7,7 +7,7 @@ Have you ever been annoyed at soundcloud copyright takedowns? Ever create that p
 Now no longer will you have to accept 47 track long 50-track playlists! With playlist-preserver you will be able to clearly see what songs were added or removed, in addition to keeping track of copyright takedowns!  Give the middle finger to the man!
 
 #What it Does
-This app allows you to save a playlist on your computer as raw text. This text doc. becomes the file from which playlist edits are tracked. Resubmitting it highlights all changes made to the playlist since the file was created. 
+This helper app allows you to save a playlist on your computer as raw text. This text doc. becomes the file from which playlist edits are tracked. Resubmitting it highlights all changes made to the playlist since the file was created. 
 
 -When the user adds or removes songs via his soundcloud account, changes are shown in the app highlighted blue.
 
