@@ -58,9 +58,9 @@ Select your playlist text file.
 
  -Nothing is highlighted (or nothing has changed) when I submitted my playlist into the app!
 
-*This app tracks changes made to your playlist only after the initial playlist text file is created. Unfortunately there's no way to gleam more information from soundcloud's provided API. As a result, if the playlist on soundcloud has not been edited since the last time you've updated your text file, there would be no "changes" to display. Only songs that were added or deleted after creating a text file will be highlighted.*
+*This app tracks changes made to your playlist only after the initial playlist text file is created. Unfortunately there's no way to gleam more information from soundcloud's provided API. As a result, only songs that were added or deleted after creating a text file will be highlighted. If the playlist on soundcloud has not been edited since the last time you've updated your text file, there would be no "changes" to display.*
 
- -What is the difference between regular, bold, and crossed-out-text? What about the colors?
+ -What is the difference between regular, bold, and crossed-out-text? What do the colors mean?
 
 *Regular text highlighting denotes older changes made to the base playlist file before the latest file submission/update. Bold text denotes recent changes made since the last update. Crossed-out-text denotes songs that have been removed from the playlist. Black text denotes songs that made up the base playlist file, eg. the playlist you had when you first started tracking it! Blue highlighting indicates changes made by the original user (eg. the person who owns the account that the playlist is tied to). Orange highlighting are songs removed by soundcloud (due to takedowns, also can be due to the artist taking down the song).*
 
