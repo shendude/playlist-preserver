@@ -66,7 +66,9 @@ Regular text highlighting denotes older changes made to the base playlist file b
 
 -**How do I make changes to my soundcloud playlist?**
 
-Only the soundcloud user who has made the playlist can change it. Visit the soundcloud how-to guide (link:http://uploadandmanage.help.soundcloud.com/customer/en/portal/topics/832450-your-playlists/articles?b_id=9645) for more info.
+Only the soundcloud user who has made the playlist can change it. Visit the soundcloud how-to guide (http://uploadandmanage.help.soundcloud.com/customer/en/portal/topics/832450-your-playlists/articles?b_id=9645) for more info.
+
+
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
 
