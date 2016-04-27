@@ -21,9 +21,10 @@ note: *This app does not require any login's and does not save your data. It wil
 
 1)Enter your soundcloud username into the textbox and click **SEARCH**. Click yourself!
 
-2)Click on a playlist to bring up the playlist in text form. *Copy and save this text to your computer!*
+2)*Initializing:* Click on a playlist to bring up the playlist in text form.
 
-3)As your playlist changes over time, **UPDATE** and **SUBMIT PLAYLIST** via the update option from step 2.
+3)*Updating and Viewing:* As your playlist changes over time, **UPDATE** and **SUBMIT PLAYLIST** via the update option from step 2.
+Select your playlist text file.
 
 4)View your playlist,  color coded for your convenience.
 
@@ -40,7 +41,7 @@ note: *This app does not require any login's and does not save your data. It wil
 
 
 
-5)Finally, save your playlist again. Click the **Click Here to Save** button. *Copy and save this text to your computer!*
+5)Finally, save your playlist again. Click the **Click Here to Save** button.
 
 #FAQ
  -I can't find myself!
@@ -57,7 +58,7 @@ note: *This app does not require any login's and does not save your data. It wil
 
  -Nothing is highlighted (or nothing has changed) when I submitted my playlist into the app!
 
-*If the playlist on soundcloud has not been edited since the last time you've updated your text file, there are no "changes" to display. Only if songs were added or deleted will you see highlighting.*
+*This app tracks changes made to your playlist only after the initial playlist text file is created. Unfortunately there's no way to gleam more information from soundcloud's provided API. If the playlist on soundcloud has not been edited since the last time you've updated your text file, there would be no "changes" to display. Only if songs were added or deleted after the update will you see highlighting.*
 
  -What is the difference between regular, bold, and crossed-out-text? What about the colors?
 
