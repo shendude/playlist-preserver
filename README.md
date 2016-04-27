@@ -67,7 +67,7 @@ You need to have registered a soundcloud accout. Visit the soundcloud how-to gui
 
 -**How do I edit a playlist?**
 
-Only the soundcloud user who has made the playlist can change it. Visit the soundcloud how-to guides (http://uploadandmanage.help.soundcloud.com/customer/portal/articles/2122125-managing-and-customizing-your-playlist) for more info.
+Only the soundcloud user who has made the playlist can change it. Visit the soundcloud how-to guide (http://uploadandmanage.help.soundcloud.com/customer/portal/articles/2122125-managing-and-customizing-your-playlist) for more info.
 
 -**How come the changes I've made aren't showing up?**
 
