@@ -57,11 +57,11 @@ note: *This app does not require any login's and does not save your data. It wil
 
 4)Nothing is highlighted (or nothing has changed) when I submitted my playlist into the app!
 
-*If the playlist on soundcloud has not been edited since the last time you've updated your text file, there are no "changes" to display. Only if songs were added or deleted will you see highlighting. Why don't you go ahead and add some new songs to that playlist?*
+*If the playlist on soundcloud has not been edited since the last time you've updated your text file, there are no "changes" to display. Only if songs were added or deleted will you see highlighting.*
 
 5)What is the difference between regular, bold, and crossed-out-text? What about the colors?
 
-*Regular text highlighting denotes older changes made to the base playlist file before the latest file submission/update. Bold text denotes recent changes made since the last update. Crossed-out-text denotes songs that have been removed from the playlist. Black text denotes songs that made up the base playlist file, eg. the playlist you had when you first started tracking it! Blue highlighting are songs added or removed by the original user (eg. the person who owns the account that the playlists are tied to). Orange highlighting are songs removed by soundcloud (due to takedowns, also can be due to the artist taking down the song).*
+*Regular text highlighting denotes older changes made to the base playlist file before the latest file submission/update. Bold text denotes recent changes made since the last update. Crossed-out-text denotes songs that have been removed from the playlist. Black text denotes songs that made up the base playlist file, eg. the playlist you had when you first started tracking it! Blue highlighting indicates changes made by the original user (eg. the person who owns the account that the playlist is tied to). Orange highlighting are songs removed by soundcloud (due to takedowns, also can be due to the artist taking down the song).*
 
 #closing notes
 to see an example of this app in action, feel free to look at my own playlist:
