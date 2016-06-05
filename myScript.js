@@ -89,7 +89,7 @@ function getUser(index, id) {
     };
   });
   SC.get('/users/' + currUserId + '/favorites', {
-    limit: 200
+    limit: 500
   }).then(function(favorites) {
     for (var i = 0; i < favorites.length; i++) {
       currTrack = favorites[i];
